@@ -1,0 +1,8 @@
+# Raw data is downloaded from Kaggle and not committed
+data/*.csv
+data/*.zip
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+.DS_Store
+sentiment_results*
