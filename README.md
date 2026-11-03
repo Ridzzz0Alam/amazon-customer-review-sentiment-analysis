@@ -4,6 +4,8 @@ An end to end NLP project that predicts customer sentiment from review text. It 
 
 The model is a TF-IDF and logistic regression pipeline with unigrams and bigrams. On reviews of **phones never seen during development** it reaches a macro F1 of **0.918** and catches **92.6%** of negative reviews.
 
+For a detailed analysis, read the blog post at [ridwanalam.site](https://www.ridwanalam.site/blogs/amazon-customer-review-sentiment-analysis).
+
 ![Concern topics](reports/figures/07_concerns.png)
 
 ## Contents
