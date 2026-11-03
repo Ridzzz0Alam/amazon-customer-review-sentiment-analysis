@@ -15,6 +15,7 @@ For a detailed analysis, read the blog post at [ridwanalam.site](https://www.rid
 | `sentiment_analysis.ipynb` | The full analysis. Runs from top to bottom with explanations and plots |
 | `sentiment_analysis_colab.ipynb` | The same analysis with setup cells for Google Colab |
 | `reports/sentiment_analysis.html` | The executed notebook as a web page for quick reading |
+| `reports/theme/` and `style_report.py` | Light and dark theme, contents sidebar and page layout added to the HTML report |
 | `reports/figures/` | All plots saved as PNG |
 | `models/sentiment_pipeline.joblib` | The saved final pipeline (TF-IDF plus logistic regression) |
 | `src/predict.py` | Prediction function and a small command line demo |
@@ -125,6 +126,8 @@ No GPU is needed. A CPU runtime finishes in a few minutes.
 ```bash
 python build_notebook.py
 jupyter nbconvert --to notebook --execute --inplace sentiment_analysis.ipynb
+jupyter nbconvert --to html sentiment_analysis.ipynb --output-dir reports
+python style_report.py
 ```
 
 A full run takes about two minutes on a laptop CPU.
