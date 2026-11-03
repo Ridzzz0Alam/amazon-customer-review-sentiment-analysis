@@ -6,6 +6,8 @@ The model is a TF-IDF and logistic regression pipeline with unigrams and bigrams
 
 For a detailed analysis, read the blog post at [ridwanalam.site](https://www.ridwanalam.site/blogs/amazon-customer-review-sentiment-analysis).
 
+The full notebook report is online at [ridzzz0alam.github.io/amazon-customer-review-sentiment-analysis](https://ridzzz0alam.github.io/amazon-customer-review-sentiment-analysis/).
+
 ![Concern topics](reports/figures/07_concerns.png)
 
 ## Contents
