@@ -19,7 +19,9 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: https://review-sentiment-api.onrender.com
+        value: https://review-sentiment-api-6539.onrender.com
+      - key: NODE_VERSION
+        value: "22"
     routes:
       - type: rewrite
         source: /*
