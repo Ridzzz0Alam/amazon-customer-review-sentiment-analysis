@@ -1,0 +1,15 @@
+{
+  "macro_f1": 0.9179,
+  "accuracy": 0.929,
+  "negative_precision": 0.852,
+  "negative_recall": 0.9264,
+  "confusion_matrix": {
+    "true_neg_pred_neg": 1698,
+    "true_neg_pred_pos": 135,
+    "true_pos_pred_neg": 295,
+    "true_pos_pred_pos": 3932
+  },
+  "n_test": 6060,
+  "fit_seconds": 1.86,
+  "n_features": 36932
+}

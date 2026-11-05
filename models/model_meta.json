@@ -1,0 +1,44 @@
+{
+  "model_name": "review-sentiment-classifier",
+  "model_version": "20261031221009",
+  "package_version": "1.0.0",
+  "trained_at": "2026-10-31T22:10:09+00:00",
+  "sklearn_version": "1.9.1",
+  "params": {
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 5,
+    "C": 2.0,
+    "class_weight": "balanced",
+    "max_iter": 2000
+  },
+  "metrics": {
+    "macro_f1": 0.9179,
+    "accuracy": 0.929,
+    "negative_precision": 0.852,
+    "negative_recall": 0.9264,
+    "confusion_matrix": {
+      "true_neg_pred_neg": 1698,
+      "true_neg_pred_pos": 135,
+      "true_pos_pred_neg": 295,
+      "true_pos_pred_pos": 3932
+    },
+    "n_test": 6060,
+    "fit_seconds": 1.86,
+    "n_features": 36932
+  },
+  "data": {
+    "source": "https://www.kaggle.com/datasets/PromptCloudHQ/amazon-reviews-unlocked-mobile-phones",
+    "file": "Amazon_Unlocked_Mobile.csv",
+    "md5": "bda13bae6ef169a3f7da9cf2470b5d84",
+    "sample_size": 50000,
+    "n_dev": 26668,
+    "n_test": 6060,
+    "negative_share_dev": 0.2996,
+    "median_words_dev": 22.0,
+    "split": "GroupShuffleSplit by Product Name"
+  },
+  "model_md5": "ad37cfc8c40eee30b15eccf6c4ab0773"
+}
