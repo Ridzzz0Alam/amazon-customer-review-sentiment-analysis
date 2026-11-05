@@ -1,0 +1,26 @@
+# One-click deploy on Render (Blueprint). Free plan works for a portfolio demo.
+services:
+  - type: web
+    name: review-sentiment-api
+    runtime: docker
+    dockerfilePath: docker/api.Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: SENTIMENT_CORS_ORIGINS
+        value: '["https://review-sentiment-web.onrender.com"]'
+
+  - type: web
+    name: review-sentiment-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://review-sentiment-api.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
