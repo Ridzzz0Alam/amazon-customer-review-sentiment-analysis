@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/*
+ * Theme tokens. Light is a warm paper, dark is a deep forest charcoal.
+ * Sentiment colours were checked with a colour-vision validator in both themes
+ * (teal versus terracotta, CVD ΔE ≥ 15).
+ */
+:root {
+  color-scheme: light;
+  --paper: #f5f1e8;
+  --card: #fffdf8;
+  --well: #efe9dc;
+  --ink: #1f2420;
+  --ink-soft: #4f5650;
+  --ink-faint: #767c74;
+  --rule: #e2dacb;
+  --on-ink: #fffdf8;
+  --pos: #0b7aa6;
+  --pos-wash: #dcebf1;
+  --neg: #c4512b;
+  --neg-wash: #f7e1d7;
+  --moss: #56743f;
+  --moss-wash: #e3ead7;
+  --blob-a: #e9d9b8;
+  --blob-b: #cfe0e4;
+  --blob-c: #ecd3c6;
+  --shadow: 0 1px 0 rgb(60 50 30 / 0.04), 0 8px 24px -12px rgb(60 50 30 / 0.18);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #121513;
+  --card: #1a1e1b;
+  --well: #232825;
+  --ink: #ece8de;
+  --ink-soft: #b3b7ad;
+  --ink-faint: #868b82;
+  --rule: #2f3530;
+  --on-ink: #121513;
+  --pos: #2b95c2;
+  --pos-wash: #17323d;
+  --neg: #d96a40;
+  --neg-wash: #3b2219;
+  --moss: #9dbb87;
+  --moss-wash: #263122;
+  --blob-a: #2a2a1c;
+  --blob-b: #14303a;
+  --blob-c: #36201a;
+  --shadow: 0 1px 0 rgb(0 0 0 / 0.2), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #121513;
+    --card: #1a1e1b;
+    --well: #232825;
+    --ink: #ece8de;
+    --ink-soft: #b3b7ad;
+    --ink-faint: #868b82;
+    --rule: #2f3530;
+    --on-ink: #121513;
+    --pos: #2b95c2;
+    --pos-wash: #17323d;
+    --neg: #d96a40;
+    --neg-wash: #3b2219;
+    --moss: #9dbb87;
+    --moss-wash: #263122;
+    --blob-a: #2a2a1c;
+    --blob-b: #14303a;
+    --blob-c: #36201a;
+    --shadow: 0 1px 0 rgb(0 0 0 / 0.2), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+  }
+}
+
+@theme inline {
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-well: var(--well);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-on-ink: var(--on-ink);
+  --color-pos: var(--pos);
+  --color-pos-wash: var(--pos-wash);
+  --color-neg: var(--neg);
+  --color-neg-wash: var(--neg-wash);
+  --color-moss: var(--moss);
+  --color-moss-wash: var(--moss-wash);
+  --shadow-soft: var(--shadow);
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background: var(--paper);
+  }
+  ::selection { background: color-mix(in srgb, var(--pos) 30%, transparent); }
+  :focus-visible { outline: 2px solid var(--pos); outline-offset: 2px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0ms !important;
+      animation-duration: 0ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+/* Soft organic colour fields behind the page, plus a faint paper grain. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.backdrop::before,
+.backdrop::after,
+.backdrop > span {
+  content: "";
+  position: absolute;
+  border-radius: 46% 54% 60% 40% / 50% 42% 58% 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  animation: drift 28s ease-in-out infinite alternate;
+}
+.backdrop::before { width: 42rem; height: 34rem; left: -12rem; top: -10rem; background: var(--blob-a); }
+.backdrop::after { width: 36rem; height: 30rem; right: -10rem; top: 6rem; background: var(--blob-b); animation-delay: -9s; }
+.backdrop > span { width: 30rem; height: 26rem; left: 30%; bottom: -14rem; background: var(--blob-c); animation-delay: -16s; }
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+:root[data-theme="dark"] .grain { mix-blend-mode: screen; opacity: 0.15; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .grain { mix-blend-mode: screen; opacity: 0.15; }
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) rotate(0deg) scale(1); }
+  to { transform: translate(4rem, 3rem) rotate(25deg) scale(1.08); }
+}
+
+/* Entry animation for result cards. */
+.rise { animation: rise 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Skeleton shimmer used while waiting on the API. */
+.skeleton {
+  background: linear-gradient(90deg, var(--well) 0%, color-mix(in srgb, var(--well) 50%, var(--card)) 50%, var(--well) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s linear infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* Live status dot. */
+.pulse { position: relative; }
+.pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
+
+/* Annotated reading: words are underlined in proportion to how much they moved the verdict. */
+.mark-pos { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--pos) calc(var(--w) * 55%), transparent) 60%); border-radius: 2px; }
+.mark-neg { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--neg) calc(var(--w) * 60%), transparent) 60%); border-radius: 2px; }
+
+/* Hatched fill marks the seller or delivery concerns, so the split never relies on colour alone. */
+.hatch { background: repeating-linear-gradient(135deg, var(--neg) 0 3px, var(--neg-wash) 3px 6px); }

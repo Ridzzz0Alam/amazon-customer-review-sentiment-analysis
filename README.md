@@ -10,6 +10,8 @@ The full notebook report is online at [ridzzz0alam.github.io/amazon-customer-rev
 
 ![Concern topics](reports/figures/07_concerns.png)
 
+**MLOps version:** the same model is also packaged as a production-style system (DVC + MLflow training pipeline, FastAPI service, React frontend, Docker, Prometheus/Grafana, CI). See [docs/MLOPS.md](docs/MLOPS.md).
+
 ## Contents
 
 | Path | What it is |
