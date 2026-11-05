@@ -1,6 +1,6 @@
 # Amazon Phone Review Sentiment
 
-[![CI](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml)
+[![CI](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml)
 
 **Live demo: [review-sentiment-web.onrender.com](https://review-sentiment-web.onrender.com)** · API docs: [review-sentiment-api-6539.onrender.com/docs](https://review-sentiment-api-6539.onrender.com/docs)
 
