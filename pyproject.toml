@@ -41,6 +41,16 @@ packages = ["src/sentiment_mlops"]
 line-length = 120
 target-version = "py312"
 src = ["src", "tests"]
+# The original notebook project (generator scripts, notebook and its README) predates
+# these lint rules and is not part of the MLOps package, so it is left out of CI linting.
+extend-exclude = [
+    "*.ipynb",
+    "README.md",
+    "build_notebook.py",
+    "colab_cells.py",
+    "markdown_text.py",
+    "notebook_cells.py",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
