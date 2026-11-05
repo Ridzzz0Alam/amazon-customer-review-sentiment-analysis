@@ -6,3 +6,17 @@ __pycache__/
 .venv/
 .DS_Store
 sentiment_results*
+
+# MLOps
+.pytest_cache/
+.ruff_cache/
+.coverage
+frontend/node_modules/
+frontend/dist/
+mlflow.db
+mlruns/
+mlartifacts/
+mlflow-store/
+logs/
+.env
+.dvc/tmp
