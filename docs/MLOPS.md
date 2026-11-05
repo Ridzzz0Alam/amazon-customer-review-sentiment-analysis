@@ -2,6 +2,8 @@
 
 Production-style ML system that reads Amazon phone reviews, predicts customer sentiment, explains each prediction word by word, and tells a seller what customers complain about. It covers the full lifecycle: reproducible training, experiment tracking, a model registry, a quality gate in CI, a typed REST API, a React frontend, containers, metrics and drift checks.
 
+**Live demo: [review-sentiment-web.onrender.com](https://review-sentiment-web.onrender.com)** · API docs: [review-sentiment-api-6539.onrender.com/docs](https://review-sentiment-api-6539.onrender.com/docs)
+
 ![Single review view](screenshot-single.png)
 
 | | |
@@ -133,8 +135,10 @@ Empty or whitespace-only text returns HTTP 422 with `"Review text is empty. Plea
 
 ## Frontend
 
-* **Check one review**: verdict, confidence bar, concern chips, and the review re-rendered with each influential word underlined in the colour of the side it pushed.
-* **Analyze a CSV**: drag in a file, pick the review column, see the negative share, a concern breakdown that separates phone problems from seller or delivery problems, the most negative reviews, and download the scored CSV.
+* **Check one review**: a sentiment gauge, verdict and confidence, concern chips that separate phone problems from seller or delivery problems, the review re-rendered with each influential word underlined in the colour of the side it pushed, and a chart of the strongest words.
+* **Analyze a CSV**: drag in a file (or try the built-in sample), pick the review column, see the negative share as a donut chart, a concern breakdown that separates phone problems from seller or delivery problems, the most negative reviews, and download the scored CSV.
+
+* **Light and dark themes** with a switch in the header (light, follow the system, or dark).
 
 ![Batch view](screenshot-batch.png)
 
@@ -146,8 +150,8 @@ Empty or whitespace-only text returns HTTP 422 with `"Review text is empty. Plea
 
 ## Deploy
 
-* **Render**: push the repo and create a Blueprint from `render.yaml` (API as a Docker web service, frontend as a static site).
-* **Any container host** (Fly.io, Railway, Cloud Run, ECS): push a tag like `v1.0.0` and the release workflow publishes `ghcr.io/<you>/<repo>-api` and `-web`.
+* **Render** (live at [review-sentiment-web.onrender.com](https://review-sentiment-web.onrender.com)): create a Blueprint from `render.yaml` (API as a Docker web service, frontend as a static site). If Render gives a service a different URL because the name is taken, update `VITE_API_URL` and `SENTIMENT_CORS_ORIGINS` in `render.yaml` to match.
+* **Any container host** (Fly.io, Railway, Cloud Run, ECS): push a tag like `v1.0.0` and the release workflow publishes `ghcr.io/ridzzz0alam/amazon-customer-review-sentiment-analysis-api` and `-web`.
 
 ## Project layout
 

@@ -1,5 +1,11 @@
 # Amazon Phone Review Sentiment
 
+[![CI](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/actions/workflows/ci.yml)
+
+**Live demo: [review-sentiment-web.onrender.com](https://review-sentiment-web.onrender.com)** · API docs: [review-sentiment-api-6539.onrender.com/docs](https://review-sentiment-api-6539.onrender.com/docs)
+
+> Hosted on Render's free plan. The API sleeps when idle, so the first request can take about 50 seconds.
+
 An end to end NLP project that predicts customer sentiment from review text. It also shows a seller the most common reasons for unhappy customers.
 
 The model is a TF-IDF and logistic regression pipeline with unigrams and bigrams. On reviews of **phones never seen during development** it reaches a macro F1 of **0.918** and catches **92.6%** of negative reviews.
@@ -16,8 +22,7 @@ The full notebook report is in [reports/sentiment_analysis.html](reports/sentime
 
 | Path | What it is |
 |---|---|
-| `sentiment_analysis.ipynb` | The full analysis. Runs from top to bottom with explanations and plots |
-| `sentiment_analysis_colab.ipynb` | The same analysis with setup cells for Google Colab |
+| `amazon_customer_review_sentiment_analysis_colab.ipynb` | The full analysis with setup cells for Google Colab. [Open in Colab](https://colab.research.google.com/github/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/blob/main/amazon_customer_review_sentiment_analysis_colab.ipynb) |
 | `reports/sentiment_analysis.html` | The executed notebook as a web page for quick reading |
 | `reports/theme/` and `style_report.py` | Light and dark theme, contents sidebar and page layout added to the HTML report |
 | `reports/figures/` | All plots saved as PNG |
@@ -25,12 +30,13 @@ The full notebook report is in [reports/sentiment_analysis.html](reports/sentime
 | `src/predict.py` | Prediction function and a small command line demo |
 | `notebook_cells.py` and `markdown_text.py` and `colab_cells.py` and `build_notebook.py` | Source used to generate both notebooks |
 | `data/README.md` | How to download the dataset |
+| `src/sentiment_mlops/`, `frontend/`, `tests/`, `docker/`, `monitoring/` | The MLOps version: training pipeline, FastAPI service, React app, tests, containers and monitoring. See [docs/MLOPS.md](docs/MLOPS.md) |
 
 ## Setup
 
 ```bash
-git clone <your-repo-url>
-cd amazon-review-sentiment
+git clone https://github.com/Ridzzz0Alam/amazon-customer-review-sentiment-analysis.git
+cd amazon-customer-review-sentiment-analysis
 python -m venv .venv
 source .venv/bin/activate          # Windows users run .venv\Scripts\activate
 pip install -r requirements.txt
@@ -117,7 +123,7 @@ Empty text or whitespace or `None` returns a clear message instead of a predicti
 
 ## Run on Google Colab
 
-1. Open [Google Colab](https://colab.research.google.com) and choose **File** then **Upload notebook**. Select `sentiment_analysis_colab.ipynb`. After you push this repo you can also open it from the **GitHub** tab.
+1. [Open the notebook in Colab](https://colab.research.google.com/github/Ridzzz0Alam/amazon-customer-review-sentiment-analysis/blob/main/amazon_customer_review_sentiment_analysis_colab.ipynb).
 2. Choose **Runtime** then **Run all**.
 3. The first setup cell installs the pinned library versions and restarts the session once. Colab may say the session crashed. This is expected. Choose **Run all** again.
 4. The data is downloaded from Kaggle by default. If that fails add `KAGGLE_USERNAME` and `KAGGLE_KEY` as Colab secrets or set `DATA_SOURCE = "drive"` and put the CSV in your Google Drive.
