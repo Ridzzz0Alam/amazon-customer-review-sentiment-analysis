@@ -1,0 +1,22 @@
+# Reproducible pipeline: `uv run dvc repro` re-runs training only when data, code or params change.
+stages:
+  train:
+    cmd: uv run python -m sentiment_mlops.train
+    deps:
+      - data/Amazon_Unlocked_Mobile.csv
+      - src/sentiment_mlops/data.py
+      - src/sentiment_mlops/model.py
+      - src/sentiment_mlops/train.py
+    params:
+      - data
+      - model
+      - tuning
+      - quality_gate
+    outs:
+      - models/sentiment_pipeline.joblib:
+          cache: false
+      - models/model_meta.json:
+          cache: false
+    metrics:
+      - reports/metrics.json:
+          cache: false

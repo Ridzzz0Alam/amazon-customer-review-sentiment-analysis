@@ -1,0 +1,32 @@
+# Single source of truth for the training pipeline.
+# DVC tracks these values so any change re-runs the affected stages.
+data:
+  raw_path: data/Amazon_Unlocked_Mobile.csv
+  sample_size: 50000
+  random_state: 42
+  agreement_threshold: 0.80   # drop repeated texts whose majority label is below this share
+  test_size: 0.20             # share of product names held out for the test set
+
+model:
+  ngram_range: [1, 2]
+  min_df: 5
+  C: 2.0
+  class_weight: balanced
+  max_iter: 2000
+
+tuning:
+  enabled: false              # set true to run the small group aware grid search
+  cv_folds: 5
+  grid:
+    ngram_range: [[1, 1], [1, 2]]
+    min_df: [2, 5]
+    C: [0.5, 2.0, 8.0]
+
+quality_gate:
+  min_test_macro_f1: 0.88     # CI fails the training job below these values
+  min_test_negative_recall: 0.85
+
+mlflow:
+  enabled: true
+  experiment: review-sentiment
+  registered_model_name: review-sentiment-classifier
